@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+  height: auto !important;
+}
+
+body {
+  overflow: hidden;
+  background-color: white;
+}
+
+.content{
+  width: 100vw;
+  height: 100vh;
+}
+
+.cosmo{
+  display: flex;
+  justify-content: center;
+}
+
+.cosmo__pic{
+  width: 50vmax;
+  height: 50vmax;
+  background: url('./img/img.png') 0 0/contain no-repeat;
+}
