@@ -70,7 +70,7 @@ body {
 .icon {
   display: flex;
   align-items: center;
-  padding: 10px 50px;
+  padding: 0.5rem 1rem;
   justify-content: flex-start;
   width: 50%;
   flex-grow: 1;
@@ -82,8 +82,10 @@ body {
 .icon__pic {
   width: 5vmax;
   height: 5vmax;
-  margin-bottom: 20px;
-  margin-right: 20px;
+  min-width: 30px;
+  min-height: 30px;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
 
   &_apple {
     background: url("./img/icons/apple.svg") 0 0 / contain no-repeat;

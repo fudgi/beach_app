@@ -3,6 +3,11 @@ const cosmoPic = document.querySelector(".cosmo__pic");
 const cosmoIcons = document.querySelector(".cosmo__icons");
 const cosmoMan = document.querySelector(".cosmo__man");
 
+const isTouchDevice =
+  "ontouchstart" in window ||
+  navigator.maxTouchPoints > 0 ||
+  navigator.msMaxTouchPoints > 0;
+
 const scrollFunction = (e) => {
   if (e.target === cosmo) {
     cosmoPic.classList.remove("cosmo__pic_small");
@@ -58,13 +63,15 @@ const step = () => {
 
 requestAnimationFrame(step);
 
-window.addEventListener("mousemove", (e) => {
-  const scrollFraction = e.clientX / window.innerWidth;
-  
-  if (scrollFraction < 0.5) {
-    return (cosmo.style.transform = `translate(${
-      (0.5 - scrollFraction) * 100
-    }px,0)`);
-  }
-  cosmo.style.transform = `translate(-${(scrollFraction - 0.5) * 100}px,0)`;
-});
+if (!isTouchDevice) {
+  window.addEventListener("mousemove", (e) => {
+    const scrollFraction = e.clientX / window.innerWidth;
+
+    if (scrollFraction < 0.5) {
+      return (cosmo.style.transform = `translate(${
+        (0.5 - scrollFraction) * 100
+      }px,0)`);
+    }
+    cosmo.style.transform = `translate(-${(scrollFraction - 0.5) * 100}px,0)`;
+  });
+}
