@@ -3,27 +3,70 @@
 }
 
 html {
-  overflow: hidden;
+  /* overflow: hidden; */
   height: auto !important;
 }
 
 body {
-  overflow: hidden;
+  font-family: "Baloo Tammudu 2", cursive;
+  /* overflow: hidden; */
   background-color: white;
 }
 
-.content{
+.content {
   width: 100vw;
   height: 100vh;
 }
 
-.cosmo{
+.cosmo {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
-.cosmo__pic{
+.cosmo__pic {
   width: 50vmax;
   height: 50vmax;
-  background: url('./img/img.png') 0 0/contain no-repeat;
+  background: url("./img/img.png") 0 0 / contain no-repeat;
+}
+
+.cosmo__icons {
+  display: flex;
+  width: 50vmax;
+  flex-wrap: wrap;
+  margin-right: -4.5vmax;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  padding: 10px 50px;
+  justify-content: flex-start;
+  width: 50%;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.icon__pic {
+  width: 5vmax;
+  height: 5vmax;
+  margin-bottom: 20px;
+  margin-right: 20px;
+
+  &_apple {
+    background: url("./img/icons/apple.svg") 0 0 / contain no-repeat;
+  }
+  &_spotify {
+    background: url("./img/icons/spotify.svg") 0 0 / contain no-repeat;
+  }
+  &_yandex {
+    background: url("./img/icons/yandex.svg") 0 0 / contain no-repeat;
+  }
+  &_youtube-music {
+    background: url("./img/icons/youtube-music.svg") 0 0 / contain no-repeat;
+  }
+  &_youtube {
+    background: url("./img/icons/youtube.svg") 0 0 / contain no-repeat;
+  }
 }
