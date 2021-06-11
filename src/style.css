@@ -28,8 +28,8 @@ body {
 }
 
 .cosmo__pic {
-  width: 80%;
-  height: 80%;
+  width: 50vw;
+  height: 50vw;
   background: url("./img/bg.jpg") center / contain no-repeat;
   transform-origin: center center;
   transition: all 1s;
@@ -47,7 +47,6 @@ body {
 .cosmo__man {
   width: 80%;
   height: 80%;
-  background: url("./img/img-1.jpg") center / contain no-repeat;
 }
 
 .cosmo__icons {
