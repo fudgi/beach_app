@@ -3,13 +3,13 @@
 }
 
 html {
-  /* overflow: hidden; */
+  overflow: hidden;
   height: auto !important;
 }
 
 body {
   font-family: "Baloo Tammudu 2", cursive;
-  /* overflow: hidden; */
+  overflow: hidden;
   background-color: white;
 }
 
@@ -19,6 +19,8 @@ body {
 }
 
 .cosmo {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,16 +28,44 @@ body {
 }
 
 .cosmo__pic {
-  width: 50vmax;
-  height: 50vmax;
-  background: url("./img/img.png") 0 0 / contain no-repeat;
+  width: 80%;
+  height: 80%;
+  background: url("./img/bg.jpg") center / contain no-repeat;
+  transform-origin: center center;
+  transition: all 1s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &_small {
+    cursor: none;
+    transform: scale(0.3);
+    filter: blur(10px) opacity(0.4);
+  }
+}
+
+.cosmo__man {
+  width: 80%;
+  height: 80%;
+  background: url("./img/img-1.jpg") center / contain no-repeat;
 }
 
 .cosmo__icons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
   display: flex;
   width: 50vmax;
   flex-wrap: wrap;
-  margin-right: -4.5vmax;
+  opacity: 0;
+  transition: all 1s 0.5s;
+  pointer-events: none;
+
+  &_active {
+    opacity: 1;
+    pointer-events: all;
+  }
 }
 
 .icon {
@@ -46,6 +76,8 @@ body {
   width: 50%;
   flex-grow: 1;
   flex-shrink: 0;
+  text-decoration: none;
+  color: black;
 }
 
 .icon__pic {
