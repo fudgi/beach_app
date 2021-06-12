@@ -28,8 +28,8 @@ body {
 }
 
 .cosmo__pic {
-  width: 50vw;
-  height: 50vw;
+  width: 90vw;
+  height: 90vw;
   background: url("./img/bg.jpg") center / contain no-repeat;
   transform-origin: center center;
   transition: all 1s;
@@ -101,5 +101,12 @@ body {
   }
   &_youtube {
     background: url("./img/icons/youtube.svg") 0 0 / contain no-repeat;
+  }
+}
+
+@media (min-width: 768px) {
+  .cosmo__pic {
+    width: 50vw;
+    height: 50vw;
   }
 }
