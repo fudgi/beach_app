@@ -18,7 +18,7 @@ const click = (e) => {
   cosmoIcons.classList.add("cosmo__icons_active");
 };
 
-window.addEventListener("click", click);
+document.addEventListener("click", click);
 
 const formatImgLink = (index) => {
   const number = ("0" + index).slice(-2);
