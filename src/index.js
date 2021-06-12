@@ -8,7 +8,7 @@ const isTouchDevice =
   navigator.maxTouchPoints > 0 ||
   navigator.msMaxTouchPoints > 0;
 
-const scrollFunction = (e) => {
+const click = (e) => {
   if (e.target === cosmo) {
     cosmoPic.classList.remove("cosmo__pic_small");
     cosmoIcons.classList.remove("cosmo__icons_active");
@@ -18,7 +18,7 @@ const scrollFunction = (e) => {
   cosmoIcons.classList.add("cosmo__icons_active");
 };
 
-window.addEventListener("click", scrollFunction);
+window.addEventListener("click", click);
 
 const formatImgLink = (index) => {
   const number = ("0" + index).slice(-2);
@@ -113,13 +113,7 @@ const generateLine = () => {
   }
   ctx.quadraticCurveTo(ar[0].x, ar[0].y, arm[0].x, arm[0].y);
   ctx.stroke();
-
-  // setTimeout(() => {
-  //   requestAnimationFrame(generateLine);
-  // }, 20);
 };
-
-// requestAnimationFrame(generateLine);
 
 if (!isTouchDevice) {
   window.addEventListener("mousemove", (e) => {
@@ -156,3 +150,10 @@ if (!isTouchDevice) {
   };
   requestAnimationFrame(anim);
 }
+
+window.addEventListener("resize", () => {
+  c.width = window.innerWidth;
+  c.height = window.innerHeight;
+  canvas.width = cosmoMan.offsetWidth;
+  canvas.height = cosmoMan.offsetHeight;
+});
