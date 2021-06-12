@@ -63,9 +63,69 @@ const step = () => {
 
 requestAnimationFrame(step);
 
+let m;
+let c;
+let ctx;
+
+c = document.getElementById("canvas");
+c.width = window.innerWidth;
+c.height = window.innerHeight;
+ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.strokeStyle = "black";
+ctx.lineWidth = 1;
+
+let counter = 0;
+
+const generateLine = () => {
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  counter += 1;
+  if (counter >= 10) {
+    ctx.beginPath();
+    counter = 0;
+  }
+
+  let ar = [];
+  let arm = [];
+  let nrPoints = 10;
+
+  for (let ii = 0; ii < nrPoints; ii++) {
+    let p = {};
+    p.x = Math.random() * window.innerWidth;
+    p.y = Math.random() * window.innerHeight;
+    ar.push(p);
+  }
+  let i;
+  for (i = 0; i < ar.length - 1; i++) {
+    m = {};
+    m.x = (ar[i].x + ar[i + 1].x) / 2;
+    m.y = (ar[i].y + ar[i + 1].y) / 2;
+    arm.push(m);
+  }
+  m.x = (ar[i].x + ar[0].x) / 2;
+  m.y = (ar[i].y + ar[0].y) / 2;
+  arm.push(m);
+
+  ctx.moveTo(arm[0].x, arm[0].y);
+  for (let i = 1; i < ar.length; i++) {
+    ctx.quadraticCurveTo(ar[i].x, ar[i].y, arm[i].x, arm[i].y);
+    ctx.stroke();
+  }
+  ctx.quadraticCurveTo(ar[0].x, ar[0].y, arm[0].x, arm[0].y);
+  ctx.stroke();
+
+  // setTimeout(() => {
+  //   requestAnimationFrame(generateLine);
+  // }, 20);
+};
+
+// requestAnimationFrame(generateLine);
+
 if (!isTouchDevice) {
   window.addEventListener("mousemove", (e) => {
     const scrollFraction = e.clientX / window.innerWidth;
+
+    requestAnimationFrame(generateLine);
 
     if (scrollFraction < 0.5) {
       return (cosmo.style.transform = `translate(${
@@ -74,4 +134,20 @@ if (!isTouchDevice) {
     }
     cosmo.style.transform = `translate(-${(scrollFraction - 0.5) * 100}px,0)`;
   });
+
+  const clearRect = () => {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  }
+
+  let x;
+  document.addEventListener(
+    "mousemove",
+    () => {
+      if (x) clearTimeout(x);
+      x = setTimeout(clearRect, 50);
+    },
+    false
+  );
 }
+
+else window.addEventListener("deviceorientation", (e) => console.log(e), true);
