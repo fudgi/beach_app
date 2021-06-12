@@ -115,6 +115,13 @@ const generateLine = () => {
   ctx.stroke();
 };
 
+const anim = () => {
+  generateLine()
+  setTimeout(() => {
+    requestAnimationFrame(anim);
+  }, 20);
+};
+
 if (!isTouchDevice) {
   window.addEventListener("mousemove", (e) => {
     const scrollFraction = e.clientX / window.innerWidth;
@@ -143,11 +150,6 @@ if (!isTouchDevice) {
     false
   );
 } else {
-  const anim = () => {
-    setTimeout(() => {
-      requestAnimationFrame(generateLine);
-    }, 20);
-  };
   requestAnimationFrame(anim);
 }
 
