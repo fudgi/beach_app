@@ -2,6 +2,8 @@ const cosmo = document.querySelector(".cosmo");
 const cosmoPic = document.querySelector(".cosmo__pic");
 const cosmoIcons = document.querySelector(".cosmo__icons");
 const cosmoMan = document.querySelector(".cosmo__man");
+const special = document.querySelector(".special");
+const cursor = document.querySelector(".cursor");
 
 const isTouchDevice =
   "ontouchstart" in window ||
@@ -12,10 +14,14 @@ const click = (e) => {
   if (e.target === cosmo) {
     cosmoPic.classList.remove("cosmo__pic_small");
     cosmoIcons.classList.remove("cosmo__icons_active");
+    special.classList.remove("special_active");
+    cursor.classList.remove("cursor_active");
     return;
   }
   cosmoPic.classList.add("cosmo__pic_small");
   cosmoIcons.classList.add("cosmo__icons_active");
+  special.classList.add("special_active");
+  cursor.classList.add("cursor_active");
 };
 
 document.addEventListener("click", click);
@@ -51,17 +57,20 @@ img.src = formatImgLink(0);
 
 let index = 0;
 
+let stepId;
+
 const step = () => {
   index += 1;
   if (index >= 9) index = 0;
   const curImg = preloadArr[index];
+  const cosmoMan = document.querySelector(".cosmo__man");
   context.drawImage(curImg, 0, 0, cosmoMan.offsetWidth, cosmoMan.offsetHeight);
   setTimeout(() => {
-    requestAnimationFrame(step);
+    stepId = requestAnimationFrame(step);
   }, 100);
 };
 
-requestAnimationFrame(step);
+stepId = requestAnimationFrame(step);
 
 let m;
 let c;
@@ -116,7 +125,7 @@ const generateLine = () => {
 };
 
 const anim = () => {
-  generateLine()
+  generateLine();
   setTimeout(() => {
     requestAnimationFrame(anim);
   }, 20);
@@ -124,16 +133,7 @@ const anim = () => {
 
 if (!isTouchDevice) {
   window.addEventListener("mousemove", (e) => {
-    const scrollFraction = e.clientX / window.innerWidth;
-
     requestAnimationFrame(generateLine);
-
-    if (scrollFraction < 0.5) {
-      return (cosmo.style.transform = `translate(${
-        (0.5 - scrollFraction) * 100
-      }px,0)`);
-    }
-    cosmo.style.transform = `translate(-${(scrollFraction - 0.5) * 100}px,0)`;
   });
 
   const clearRect = () => {
@@ -153,9 +153,24 @@ if (!isTouchDevice) {
   requestAnimationFrame(anim);
 }
 
-window.addEventListener("resize", () => {
+const setSize = () => {
   c.width = window.innerWidth;
   c.height = window.innerHeight;
-  canvas.width = cosmoMan.offsetWidth;
-  canvas.height = cosmoMan.offsetHeight;
-});
+  setTimeout(() => {
+    canvas.width = cosmoMan.offsetWidth;
+    canvas.height = cosmoMan.offsetHeight;
+  }, 1000)
+};
+
+const refreshLayout = () => {
+  document.documentElement.style.height = `initial`;
+  setTimeout(() => {
+    document.documentElement.style.height = `100%`;
+    setTimeout(() => {
+      window.scrollTo(0, 1);
+      setSize();
+    }, 200);
+  }, 200);
+};
+
+window.addEventListener("resize", setSize);

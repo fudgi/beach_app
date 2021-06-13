@@ -18,8 +18,12 @@ body {
   height: 100vh;
 }
 
-.special{
+.special {
   filter: blur(10px);
+  transition: all 1s;
+  &_active {
+    filter: blur(10px) opacity(0.1);
+  }
 }
 
 .cosmo {
@@ -46,15 +50,15 @@ body {
   &_small {
     cursor: none;
     transform: scale(0.3);
-    filter: blur(10px) opacity(0.4);
+    filter: blur(10px) opacity(0.1);
   }
 }
 
 .cosmo__man {
   display: flex;
   justify-content: center;
-  width: 80%;
-  height: 80%;
+  width: 70%;
+  height: 70%;
 }
 
 .cosmo__icons {
@@ -63,11 +67,12 @@ body {
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   display: flex;
-  width: 50vmax;
   flex-wrap: wrap;
   opacity: 0;
   transition: all 1s 0.5s;
   pointer-events: none;
+  width: 100%;
+  padding: 30px;
 
   &_active {
     opacity: 1;
@@ -94,6 +99,7 @@ body {
   min-height: 30px;
   margin-bottom: 1rem;
   margin-right: 1rem;
+  flex-shrink: 0;
 
   &_apple {
     background: url("./img/icons/apple.svg") 0 0 / contain no-repeat;
@@ -110,11 +116,50 @@ body {
   &_youtube {
     background: url("./img/icons/youtube.svg") 0 0 / contain no-repeat;
   }
+  &_vk {
+    background: url("./img/icons/vk.svg") 0 0 / contain no-repeat;
+  }
+}
+
+.cursor-wrapper {
+  animation: fadeIn 1s 1s both;
+}
+
+.cursor {
+  opacity: 0.3;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  width: 40px;
+  height: 40px;
+  transition: all 1s;
+  background: url("./img/click.svg") 0 0 / contain no-repeat;
+  &_active {
+    opacity: 0;
+  }
 }
 
 @media (min-width: 768px) {
   .cosmo__pic {
     width: 50vw;
     height: 50vw;
+  }
+  .cosmo__icons {
+    max-width: 35vmax;
+    width: auto;
+  }
+}
+
+@media (max-height: 390px) and (orientation: landscape) {
+  .cosmo__pic {
+    width: 70vw;
+    height: 70vw;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 }
