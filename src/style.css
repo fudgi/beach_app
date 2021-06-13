@@ -73,6 +73,7 @@ body {
   transition: all 1s 0.5s;
   pointer-events: none;
   padding: 30px;
+  width: 100%;
 
   &_active {
     opacity: 1;
@@ -95,13 +96,14 @@ body {
 .icon {
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem;
   justify-content: flex-start;
   width: 50%;
   flex-grow: 1;
   flex-shrink: 0;
   text-decoration: none;
   color: black;
+  border-bottom: 1px solid darkgrey;
 }
 
 .icon__pic {
@@ -109,7 +111,7 @@ body {
   height: 5vmax;
   min-width: 30px;
   min-height: 30px;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   margin-right: 1rem;
   flex-shrink: 0;
 
@@ -160,6 +162,10 @@ body {
   .cosmo__icons {
     max-width: 35vmax;
     width: auto;
+    /* margin-right: -3rem; */
+  }
+  .popup__title {
+    font-size: 25px;
   }
 }
 
