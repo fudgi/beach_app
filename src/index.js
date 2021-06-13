@@ -1,6 +1,6 @@
 const cosmo = document.querySelector(".cosmo");
 const cosmoPic = document.querySelector(".cosmo__pic");
-const cosmoIcons = document.querySelector(".cosmo__icons");
+const popup = document.querySelector(".popup");
 const cosmoMan = document.querySelector(".cosmo__man");
 const special = document.querySelector(".special");
 const cursor = document.querySelector(".cursor");
@@ -13,13 +13,13 @@ const isTouchDevice =
 const click = (e) => {
   if (e.target === cosmo) {
     cosmoPic.classList.remove("cosmo__pic_small");
-    cosmoIcons.classList.remove("cosmo__icons_active");
+    popup.classList.remove("popup_active");
     special.classList.remove("special_active");
     cursor.classList.remove("cursor_active");
     return;
   }
   cosmoPic.classList.add("cosmo__pic_small");
-  cosmoIcons.classList.add("cosmo__icons_active");
+  popup.classList.add("popup_active");
   special.classList.add("special_active");
   cursor.classList.add("cursor_active");
 };

@@ -61,23 +61,35 @@ body {
   height: 70%;
 }
 
-.cosmo__icons {
+.popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  display: flex;
-  flex-wrap: wrap;
   opacity: 0;
   transition: all 1s 0.5s;
   pointer-events: none;
-  width: 100%;
   padding: 30px;
 
   &_active {
     opacity: 1;
     pointer-events: all;
   }
+}
+
+.popup__title {
+  font-family: "Nunito", sans-serif;
+  font-size: 20px;
+  margin-bottom: 2rem;
+}
+
+.cosmo__icons {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .icon {
