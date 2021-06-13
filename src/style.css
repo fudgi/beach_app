@@ -18,6 +18,10 @@ body {
   height: 100vh;
 }
 
+.special{
+  filter: blur(10px);
+}
+
 .cosmo {
   position: absolute;
   top: 0;
